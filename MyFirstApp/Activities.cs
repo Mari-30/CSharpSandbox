@@ -29,12 +29,13 @@ internal static class Activities
             Console.WriteLine(sexo);
             Console.WriteLine(altura);
         }
-        catch(Exception)
+        catch (Exception)
         {
             Console.WriteLine("Um erro inesperado ocorreu");
         }
     }
-    public static void Activity02() {
+    public static void Activity02()
+    {
 
         string frase = ConsoleExtensions.ReadString();
         string x = ConsoleExtensions.ReadString();
@@ -42,8 +43,8 @@ internal static class Activities
         string z = ConsoleExtensions.ReadString();
 
         string[] v = ConsoleExtensions.ReadString().Split(' ') ?? [];
-        
-        if(v.Length >= 3)
+
+        if (v.Length >= 3)
         {
             string a = v[0];
             string b = v[1];
@@ -59,7 +60,8 @@ internal static class Activities
             Console.WriteLine(c);
         }
     }
-    public static void Activity03() {
+    public static void Activity03()
+    {
 
         Console.WriteLine("Digite seu nome");
         string[] nome = ConsoleExtensions.ReadString().Split(' ') ?? [];
@@ -81,7 +83,8 @@ internal static class Activities
 
     }
 
-    public static void Activity04() {
+    public static void Activity04()
+    {
 
         double? area, preco;
 
@@ -127,10 +130,11 @@ internal static class Activities
 
     }
 
-    public static void Activity07() {
+    public static void Activity07()
+    {
 
         //Exercicio 1004 URI
-        
+
         int x, y, PROD;
 
         Console.Write("x = ");
@@ -142,10 +146,11 @@ internal static class Activities
         PROD = x * y;
 
         Console.WriteLine($"PROD = {PROD}");
-    
+
     }
 
-    public static void Activity08() {
+    public static void Activity08()
+    {
 
         //Exercicio 1007 URI
 
@@ -156,9 +161,66 @@ internal static class Activities
         int C = int.Parse(vet[2]);
         int D = int.Parse(vet[3]);
 
-        int DIFERENCA = (A*B - C*D);
+        int DIFERENCA = (A * B - C * D);
 
         Console.WriteLine($"DIFERENÇA = {DIFERENCA}");
     }
 
+    public static void Activity09()
+    {
+        //Exercicio 1008 URI
+
+        Console.WriteLine("Digite seu nome: ");
+        string? employeeName = ConsoleExtensions.ReadString();
+        int? id = ConsoleExtensions.ReadInt(true, "ID: ");
+        double? horasTrabalhadas = ConsoleExtensions.ReadDouble(true, "Working hours: ");
+        double? valorDaHora = ConsoleExtensions.ReadDouble(true, "Hourly Rate ");
+
+
+        double? salary = horasTrabalhadas * valorDaHora;
+
+        Console.WriteLine($"Dados do Funcionario \nName:{employeeName} \nID: {id} \n" +
+            $"Horas trabalhadas: {horasTrabalhadas} \nSalari: R${salary}");
+
+    }
+    public static void Activity10()
+    {
+        //Exercicio 1010 URI
+
+        //codigo da peça, numero da peça, valor unitario
+        //dois inteiros, double
+
+        string[] peca1 = ConsoleExtensions.ReadString().Split(' ') ?? [];
+        string[] peca2 = ConsoleExtensions.ReadString().Split(' ') ?? [];
+
+        int codigoP1 = int.Parse(peca1[0]);
+        int numPecaP1 = int.Parse(peca1[1]);
+        double valorUnitP1 = double.Parse(peca1[2]);
+
+        int codigoP2 = int.Parse(peca2[0]);
+        int numPecaP2 = int.Parse(peca2[1]);
+        double valorUnitP2 = double.Parse(peca2[2]);
+
+        double valorPagar = (valorUnitP1 * numPecaP1 + valorUnitP2 * numPecaP2);
+
+        Console.WriteLine($"Valor a Pagar: R$ {valorPagar}");
+
+    }
+
+    public static void Activity11()
+    {
+
+        //Exercicio 1014 URI
+        //consumo médio
+        //Entrada: Distancia total percorrida km e Total de combustivel gasto em L
+        // X = DISTANCIA Y TOTAL COMBUSTIVEL
+
+        double? X = ConsoleExtensions.ReadInt(true, "Distancia total Percorrida: ");
+        double? Y = ConsoleExtensions.ReadDouble(true, "Combustivel gasto: ");
+
+        double? media = X / Y;
+
+        Console.WriteLine($"Média = {media}km/l");
+
+    }
 }
