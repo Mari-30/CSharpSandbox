@@ -223,4 +223,87 @@ internal static class Activities
         Console.WriteLine($"Média = {media}km/l");
 
     }
+
+    public static void Activity12()
+    {
+        //carro faz 12km/l
+
+        int mediaConsumo = 12;
+
+        int? tempoGasto = ConsoleExtensions.ReadInt(true, "Tempo da viagem: ");
+        int? velMedia = ConsoleExtensions.ReadInt(true, "Velocidade média da viagem: ");
+
+        double? distanciaPercorrida = tempoGasto * velMedia;
+
+        Console.WriteLine($"A distancia percorrida durante a viagem é: {distanciaPercorrida}km");
+
+        double? qtdLitros = distanciaPercorrida / mediaConsumo;
+
+        Console.WriteLine($"{qtdLitros:F2}L");
+
+    }
+
+    public static void Activity13() {
+
+        double? @base = ConsoleExtensions.ReadDouble(true, "Base: ");
+        double? altura = ConsoleExtensions.ReadDouble(true, "Altura: ");
+
+        double? area = @base * altura;
+        double? perimetro = 2 * (@base + altura);
+        double? diagonal = Math.Sqrt(Math.Pow(@base ?? 0, 2) + Math.Pow(altura ?? 0, 2));
+
+        Console.WriteLine($"Área = {area}\nPerimetro = {perimetro}\nDiagonal = {diagonal}");
+
+
+    }
+
+    public static void Activity14() {
+
+        string nomeA, nomeB;
+        int idadeA, idadeB;
+
+        double media;
+
+        string[] vet;
+
+        vet = Console.ReadLine().Split(' ');
+        nomeA = vet[0];
+        idadeA = int.Parse(vet[1]);
+
+        vet = Console.ReadLine().Split(' ');
+        nomeB = vet[0];
+        idadeB = int.Parse(vet[1]);
+
+        media = (double)(idadeA + idadeB) / 2.0;
+
+        Console.WriteLine($"A média de idade de {nomeA} e {nomeB} é de {media}");
+
+
+    }
+    public static void Activity15()
+    {
+        Console.WriteLine("Employee Name: ");
+        string? employeeName = ConsoleExtensions.ReadString();
+        double? salary = ConsoleExtensions.ReadDouble(true, "Month Salary");
+        int? numOfSales = ConsoleExtensions.ReadInt(true, "Number of sales");
+
+        double? totalSalary = (numOfSales * 0.15) + salary;
+
+        Console.WriteLine($"TOTAL = R${totalSalary:f2}");
+
+    }
+
+    /*
+     * Faça um programa que calcule e mostre o volume de uma esfera sendo fornecido o valor de seu raio (R). A fórmula para calcular o volume é: (4/3) * pi * R3. Considere (atribua) para pi
+     * o valor 3.14159.
+
+        Dica: Ao utilizar a fórmula, procure usar (4/3.0) ou (4.0/3), pois algumas linguagens (dentre elas o C++), assumem que o resultado da divisão entre dois inteiros é outro inteiro.
+
+        Entrada
+        O arquivo de entrada contém um valor de ponto flutuante (dupla precisão), correspondente ao raio da esfera.
+
+        Saída
+        A saída deverá ser uma mensagem "VOLUME" conforme o exemplo fornecido abaixo, com um espaço antes e um espaço depois da igualdade. O valor deverá ser apresentado com 3 casas após o ponto.
+     */
+
 }
