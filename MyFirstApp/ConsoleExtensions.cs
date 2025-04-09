@@ -65,7 +65,6 @@ internal static class ConsoleExtensions
     private static void WriteQuestionIfNotNull(string? question)
     {
         if (question == null) return;
-
         Console.WriteLine(question);
     }
 }

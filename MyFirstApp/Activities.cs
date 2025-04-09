@@ -1,6 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Globalization;
+using System.Runtime.Intrinsics.X86;
 using System.Runtime.Serialization;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MyFirstApp;
 
@@ -243,7 +246,8 @@ internal static class Activities
 
     }
 
-    public static void Activity13() {
+    public static void Activity13()
+    {
 
         double? @base = ConsoleExtensions.ReadDouble(true, "Base: ");
         double? altura = ConsoleExtensions.ReadDouble(true, "Altura: ");
@@ -257,7 +261,8 @@ internal static class Activities
 
     }
 
-    public static void Activity14() {
+    public static void Activity14()
+    {
 
         string nomeA, nomeB;
         int idadeA, idadeB;
@@ -306,4 +311,225 @@ internal static class Activities
         A saída deverá ser uma mensagem "VOLUME" conforme o exemplo fornecido abaixo, com um espaço antes e um espaço depois da igualdade. O valor deverá ser apresentado com 3 casas após o ponto.
      */
 
+    public static void Activity16()
+    {
+        double? r3 = ConsoleExtensions.ReadDouble(true, "Digite o valor para R3: ");
+
+
+        if (r3.HasValue)
+        {
+            // Calcula o volume com precisão de double
+            double vol = MathExtensions.SphereVolum(r3.Value);
+
+            // Se precisar do volume como float, converta explicitamente
+            float volFloat = (float)vol;
+
+            Console.WriteLine($"O volume da esfera é: {volFloat} (em formato float) ou {vol} (em formato double).");
+        }
+        else
+        {
+            Console.WriteLine("Valor inválido para o raio.");
+        }
+    }
+    /*
+        Escreva um programa que leia três valores com ponto flutuante de dupla precisão: A, B e C. Em seguida, calcule e mostre:
+        a) a área do triângulo retângulo que tem A por base e C por altura.
+        b) a área do círculo de raio C. (pi = 3.14159)
+        c) a área do trapézio que tem A e B por bases e C por altura.
+        d) a área do quadrado que tem lado B.
+        e) a área do retângulo que tem lados A e B.
+
+        Entrada
+        O arquivo de entrada contém três valores com um dígito após o ponto decimal.
+
+        Saída
+        O arquivo de saída deverá conter 5 linhas de dados. Cada linha corresponde a uma das áreas descritas acima, sempre com mensagem correspondente e um espaço entre os dois pontos e o valor. 
+        O valor calculado deve ser apresentado com 3 dígitos após o ponto decimal.
+
+    */
+    public static void Activity17()
+    {
+        //  URI 1012
+
+        double? a = ConsoleExtensions.ReadDouble(true, "Digite o valor para A: ");
+        double? b = ConsoleExtensions.ReadDouble(true, "Digite o valor para B: ");
+        double? c = ConsoleExtensions.ReadDouble(true, "Digite o valor para C: ");
+
+        double? areaTriangulo = c * a / 2;
+        double? areaCirculo = Math.PI * Math.Pow(c ?? 0, 2);
+        double? areaTrapezio = (a + b) * c / 2;
+        double? areaQuadrado = b * b;
+        double? areaRetangulo = a * b;
+
+        Console.WriteLine($"RETANGULO: {areaTriangulo:F3}");
+        Console.WriteLine($"RETANGULO: {areaCirculo:F3}");
+        Console.WriteLine($"TRAPEZIO: {areaTrapezio:F3}");
+        Console.WriteLine($"QUADRADO: {areaQuadrado:F3}");
+        Console.WriteLine($"RETANGULO: {areaRetangulo:F3}");
+
+    }
+    /*
+        Faça um programa que leia três valores e apresente o maior dos três valores lidos seguido da mensagem “eh o maior”. Utilize a fórmula:
+
+        Obs.: a fórmula apenas calcula o maior entre os dois primeiros (a e b). Um segundo passo, portanto é necessário para chegar no resultado esperado.
+
+        Entrada
+        O arquivo de entrada contém três valores inteiros.
+
+        Saída
+        Imprima o maior dos três valores seguido por um espaço e a mensagem "eh o maior".
+    */
+    public static void Activity18()
+    {
+        //URI 1013
+
+        double? a = ConsoleExtensions.ReadDouble(true, "Digite o valor para A: ");
+        double? b = ConsoleExtensions.ReadDouble(true, "Digite o valor para B: ");
+        double? c = ConsoleExtensions.ReadDouble(true, "Digite o valor para C: ");
+
+        double? maior = Math.Max(Math.Max(a.GetValueOrDefault(), b.GetValueOrDefault()), c.GetValueOrDefault());
+
+        Console.WriteLine($"O maior numero é: {maior}");
+
+    }
+
+    /*
+        Leia os quatro valores correspondentes aos eixos x e y de dois pontos quaisquer no plano, p1(x1,y1) e p2(x2,y2) e calcule a distância entre eles, mostrando 4 casas decimais, segundo a fórmula:
+
+        Distancia =
+
+        Entrada
+        O arquivo de entrada contém duas linhas de dados. A primeira linha contém dois valores de ponto flutuante: x1 y1 e a segunda linha contém dois valores de ponto flutuante x2 y2.
+
+        Saída
+        Calcule e imprima o valor da distância segundo a fórmula fornecida, considerando 4 casas decimais.
+     */
+
+    public static Action Activity19()
+    {
+        return () =>
+        {
+            //URI 1015
+
+            string[] vet1, vet2;
+            double x1, x2, y1, y2;
+
+            vet1 = Console.ReadLine().Split(' ');
+            vet2 = Console.ReadLine().Split(' ');
+
+            x1 = double.Parse(vet1[0]);
+            x2 = double.Parse(vet1[1]);
+
+            y1 = double.Parse(vet2[0]);
+            y2 = double.Parse(vet2[1]);
+
+            double distancia = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
+
+            Console.WriteLine($"Distancia: {distancia:f2}");
+        };
+    }
+
+    public static Action Activity20()
+    {
+        return () =>
+        {
+            Console.WriteLine("Atividade 20: Conversor de tempo");
+            int N, horas, resto, minutos, segundos;
+
+            N = int.Parse(Console.ReadLine());
+
+            horas = N / 3600;
+            resto = N % 3600;
+
+            minutos = resto / 60;
+            segundos = resto % 60;
+
+            Console.WriteLine(horas + ":" + minutos + ":" + segundos);
+        };
+    }
+
+    public static Action Activity21()
+    {
+        //URI 1018
+        //Leia um valor inteiro, que é o tempo de duração em segundos de um determinado evento em uma fábrica, e informe-o expresso no formato horas:minutos:segundos.
+
+        //Entrada
+        //O arquivo de entrada contém um valor inteiro N.
+
+        //Saída
+        //Imprima o tempo lido no arquivo de entrada(segundos), convertido para horas: minutos: segundos, conforme exemplo fornecido.
+
+
+        return () =>
+        {
+            int n, horas, minutos, segundos;
+            n = int.Parse(Console.ReadLine());
+
+            horas = n / 3600;
+            minutos = (n % 3600) / 60;
+            segundos = n % 60;
+
+            Console.WriteLine(horas + ":" + minutos + ":" + segundos);
+        };
+    }
+    public static Action Activity22()
+    {
+
+        /* 
+            Leia um valor inteiro. A seguir, calcule o menor número de notas possíveis (cédulas) no qual o valor pode ser decomposto. As notas consideradas são de 100, 50, 20, 10, 5, 2 e 1
+            A seguir mostre o valor lido e a relação de notas necessárias.
+
+            Entrada
+            O arquivo de entrada contém um valor inteiro N (0 < N < 1000000).
+
+            Saída
+            Imprima o valor lido e, em seguida, a quantidade mínima de notas de cada tipo necessárias, conforme o exemplo fornecido. Não esqueça de imprimir o fim de linha após cada linha
+            caso contrário seu programa apresentará a mensagem: “Presentation Error”.
+        */
+
+        return () =>
+        {
+            var valorDinheiro = ConsoleExtensions.ReadDouble(true, "Entre com um valor em reais (R$):")!.Value;
+            var result = MoneyHandler.NoteCount(valorDinheiro);
+
+            foreach (var count in result)
+            {
+                Console.WriteLine($"{count.Value} notas de {count.Key}");
+            }
+        };
+    }
+    public static Action Activity23()
+    {
+        //URI 1020
+
+        //Leia um valor inteiro correspondente à idade de uma pessoa em dias e informe-a em anos, meses e dias
+
+        //Obs.: apenas para facilitar o cálculo, considere todo ano com 365 dias e todo mês com 30 dias.
+        //Nos casos de teste nunca haverá uma situação que permite 12 meses e alguns dias, como 360, 363 ou 364.
+        //Este é apenas um exercício com objetivo de testar raciocínio matemático simples.
+
+        //Entrada
+        //        O arquivo de entrada contém um valor inteiro.
+
+        //Saída
+        //        Imprima a saída conforme exemplo fornecido.
+
+        return () =>
+        {
+            Console.WriteLine("Idade em Ano, Meses e Dias");
+
+            int? totalDias = ConsoleExtensions.ReadInt(true, "Digite a sua idade em dias: ")!.Value;
+
+            int? ano = totalDias / 365;
+            int? diasRestantes = (totalDias % 365);
+            int? meses = diasRestantes / 30;
+            int? dias = diasRestantes % 30;
+
+            Console.WriteLine($"{ano}ano(s) \n{meses}mes(es) \n{dias}dia(s)");
+
+
+        };
+
+
+    }
 }
