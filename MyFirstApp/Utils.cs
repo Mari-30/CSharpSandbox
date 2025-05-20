@@ -14,7 +14,7 @@ public static class Utils
 
     public static void LoopProgram(this Action program)
     {
-        while(true)
+        while (true)
         {
             program.Invoke();
             Console.Write("Deseja executar novamente? y/n");
@@ -28,4 +28,11 @@ public static class Utils
             Console.WriteLine();
         }
     }
+
+    public static int TotalSeconds(int day, int hours, int minutes, int seconds)
+    {
+        return ((day - 1) * 24 * 3600) + hours * 3600 + minutes * 60 + seconds;
+    }
+
+
 }
