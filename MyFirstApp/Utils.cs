@@ -34,5 +34,11 @@ public static class Utils
         return ((day - 1) * 24 * 3600) + hours * 3600 + minutes * 60 + seconds;
     }
 
+    public static T Random<T>(this IEnumerable<T> items)
+    {
+        var random = new Random(Guid.NewGuid().GetHashCode());
+        var index = random.Next(items.Count());
 
+        return items.ElementAt(index);
+    }
 }
